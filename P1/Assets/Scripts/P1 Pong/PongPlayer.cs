@@ -6,6 +6,7 @@ public class PongPlayer : MonoBehaviour
 {
     public float velocidadPaleta = 3f;
     private Rigidbody2D rb;
+    public bool jugadorActivo = true;
 
     // Start is called before the first frame update
     void Start()
@@ -16,8 +17,25 @@ public class PongPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InputJugador();
+        if (jugadorActivo)
+        {
+            InputJugador();
+        }
     }
+
+    public void ResetJugador() // Reinicio la posición
+    {
+        Vector3 aux = transform.position;
+        aux.y = 0;
+        transform.position = aux;
+        jugadorActivo = false;
+        rb.velocity = Vector3.zero;
+    }
+    public void InicioRonda() // Reinicio la posición
+    { 
+        jugadorActivo = true;
+    }
+
 
     private void InputJugador()
     {

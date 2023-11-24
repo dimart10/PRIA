@@ -39,4 +39,11 @@ public class PongAI : MonoBehaviour
         else rbAI.velocity = Vector2.zero;
 
     }
+
+    public void ResetIA() // Reinicio la posicion
+    {
+        Vector3 aux = transform.position;
+        aux.y = 0;
+        transform.position = aux;
+    }
 }
