@@ -33,7 +33,7 @@ public class PongAI : MonoBehaviour
             // Si la pelota está abajo
             else if (pelota.position.y < transform.position.y)
             {
-                rbAI.velocity = new Vector2(0, -velocidadAI); // ir hacia abajo
+                rbAI.velocity = new Vector2(0, -velocidadAI); // Ir hacia abajo
             }
         }
         else rbAI.velocity = Vector2.zero;
