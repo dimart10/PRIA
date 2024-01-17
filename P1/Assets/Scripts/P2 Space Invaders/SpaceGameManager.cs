@@ -30,7 +30,11 @@ public class SpaceGameManager : MonoBehaviour
         {
             for (int j = 0; j < iRow; j++)
             {
-                GameObject aux = Instantiate(squidPrefab);
+                GameObject invader;
+                if (j < 2) invader = octopusPrefab;
+                else if (j < 4) invader = crabPrefab;
+                else invader = squidPrefab;
+                GameObject aux = Instantiate(invader);
                 aux.transform.position = new Vector3((-iCol/2+i) * cellSize, (-iRow/2+j) * cellSize, 0);
             }
         }
