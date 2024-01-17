@@ -8,6 +8,8 @@ public class SpacePlayer : MonoBehaviour
     public KeyCode rightKey = KeyCode.D;
     public KeyCode shootKey = KeyCode.Space;
     public float playerSpeed = 1f;
+    public GameObject bulletPrefab;
+    public bool canShoot = true;
 
     // Start is called before the first frame update
     void Start()
@@ -32,12 +34,18 @@ public class SpacePlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(shootKey))
         {
-            Shoot();
+            if (canShoot)
+            {
+                Shoot();
+            }
         }
     }
 
     private void Shoot()
     {
         Debug.Log("DISPARO PLAYER");
+        SpacePlayerBullet aux = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<SpacePlayerBullet>();
+        aux.player = this;
+        canShoot = false;
     }
 }
