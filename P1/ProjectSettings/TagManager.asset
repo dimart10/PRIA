@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SPlayerBullet
   - SInvader
+  - SBorder
   layers:
   - Default
   - TransparentFX

@@ -9,37 +9,20 @@ public class SpaceInvader : MonoBehaviour
 {
     public invaderType tipo = invaderType.SQUID;
     public Animator animator;
-    public float speed = 1f;
-    public float dir = 1f;
-    public float moveTime = 3f;
-    private float timer = 0f;
+    public SpaceInvadersMovement father;
+    public GameObject deathParticle;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        timer = 0f;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        timer += Time.deltaTime;
-        if(timer > moveTime)
+        if(collision.tag == "SBorder")
         {
-            dir *= -1;
-            timer = 0f;
-            GoDown();
+            father.SwitchDir();
         }
-        Movement();
     }
 
-    private void Movement()
+    private void OnDestroy()
     {
-        transform.position += new Vector3(1, 0, 0) * speed * dir * Time.deltaTime;
+        Instantiate(deathParticle,transform.position, Quaternion.identity);
     }
 
-    private void GoDown()
-    {
-        transform.position += new Vector3(0, -2, 0);
-    }
 }

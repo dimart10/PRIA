@@ -12,6 +12,8 @@ public class SpaceGameManager : MonoBehaviour
     public int iCol = 11;
     public float cellSize = 2.5f;
 
+    public SpaceInvadersMovement invadersTransform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,8 +36,9 @@ public class SpaceGameManager : MonoBehaviour
                 if (j < 2) invader = octopusPrefab;
                 else if (j < 4) invader = crabPrefab;
                 else invader = squidPrefab;
-                GameObject aux = Instantiate(invader);
+                GameObject aux = Instantiate(invader, invadersTransform.transform);
                 aux.transform.position = new Vector3((-iCol/2+i) * cellSize, (-iRow/2+j) * cellSize, 0);
+                aux.GetComponent<SpaceInvader>().father = invadersTransform;
             }
         }
     }

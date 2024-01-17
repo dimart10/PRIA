@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6484885657423219050}
   - component: {fileID: 6097981062241087527}
   - component: {fileID: 2691542611522754897}
+  - component: {fileID: -5355998625025556462}
   m_Layer: 0
   m_Name: Invader_Crab
   m_TagString: SInvader
@@ -99,8 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipo: 1
-  animator: {fileID: 0}
-  speed: 1
+  animator: {fileID: -5355998625025556462}
+  father: {fileID: 0}
+  deathParticle: {fileID: 8599835844037101210, guid: 0c587fc598440464e94a08a3e9df44d2, type: 3}
 --- !u!61 &2691542611522754897
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,3 +148,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2, y: 1.6}
   m_EdgeRadius: 0
+--- !u!95 &-5355998625025556462
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6201183599214269371}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ef4bdec6bb8d6a94eb15b6f6f090d275, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
