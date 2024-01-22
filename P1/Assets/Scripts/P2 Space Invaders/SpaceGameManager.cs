@@ -37,7 +37,8 @@ public class SpaceGameManager : MonoBehaviour
                 else if (j < 4) invader = crabPrefab;
                 else invader = squidPrefab;
                 GameObject aux = Instantiate(invader, invadersTransform.transform);
-                aux.transform.position = new Vector3((-iCol/2+i) * cellSize, (-iRow/2+j) * cellSize, 0);
+                aux.transform.position = new Vector3(invadersTransform.transform.position.x + (-iCol/2+i) * cellSize, 
+                invadersTransform.transform.position.y + (-iRow/2+j) * cellSize, 0);
                 aux.GetComponent<SpaceInvader>().father = invadersTransform;
             }
         }
