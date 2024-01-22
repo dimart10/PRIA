@@ -30,6 +30,15 @@ public class SpacePlayerBullet : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
+        else if(collision.tag == "SBarrier")
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+        else if (collision.tag == "SBorder")
+        {
+            Destroy(gameObject);
+        }
     }
 }
 

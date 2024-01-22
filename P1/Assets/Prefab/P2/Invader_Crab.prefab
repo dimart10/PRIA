@@ -103,6 +103,7 @@ MonoBehaviour:
   animator: {fileID: -5355998625025556462}
   father: {fileID: 0}
   deathParticle: {fileID: 8599835844037101210, guid: 0c587fc598440464e94a08a3e9df44d2, type: 3}
+  invaderBullet: {fileID: 3417619041789467398, guid: 0aca7741536491c4081731fc1afff905, type: 3}
 --- !u!61 &2691542611522754897
 BoxCollider2D:
   m_ObjectHideFlags: 0

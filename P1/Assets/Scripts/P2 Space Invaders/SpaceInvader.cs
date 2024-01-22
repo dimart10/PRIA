@@ -11,6 +11,8 @@ public class SpaceInvader : MonoBehaviour
     public Animator animator;
     public SpaceInvadersMovement father;
     public GameObject deathParticle;
+    public GameObject invaderBullet;
+    public float shotDistance = 0.5f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,6 +25,13 @@ public class SpaceInvader : MonoBehaviour
     private void OnDestroy()
     {
         Instantiate(deathParticle,transform.position, Quaternion.identity);
+    }
+
+    public void Shoot()
+    {
+        Vector3 aux = transform.position;
+        aux.y -= shotDistance;
+        Instantiate(invaderBullet, aux, Quaternion.identity);
     }
 
 }

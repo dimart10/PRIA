@@ -467,7 +467,7 @@ TextureImporter:
         width: 3
         height: 3
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -488,7 +488,7 @@ TextureImporter:
         width: 3
         height: 3
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -496,6 +496,258 @@ TextureImporter:
       bones: []
       spriteID: db98fcf942ff4a14089383a217e9a12c
       internalID: 1088006836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBullet1_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16d9f7c43f9bae54c9061271a6328312
+      internalID: 1645905592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBullet1_2
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9321a647ee9c19f41a94a0bcafbb0c73
+      internalID: 122065324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBullet1_3
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30cff7d08aa57024a8b0759a8dc2e7b5
+      internalID: -1586360979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBullet1_4
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8f43931067e3204892fe797abfe8eea
+      internalID: 1361927806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBullet2_1
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a454537fe9be9244a78df7f42145a0a
+      internalID: 42977284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBullet2_2
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4bfd421685babe40b06b7352d63755e
+      internalID: 218397288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBullet2_3
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce28036f0b7d871499baea963af27e11
+      internalID: -1272615262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBullet2_4
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2cd9617c527d9140968444f6ba92fd4
+      internalID: 1423831725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBullet3_1
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 426cbe8092cfd264b86f494bad66b793
+      internalID: 520602224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBullet3_2
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b652f7c9c8c3cc047965239b532c489b
+      internalID: -1002236955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBullet3_3
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0873c98f808f11f4c8427d098bc406c7
+      internalID: 149098156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IBullet3_4
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80c9f2217704e543923c298d458c17d
+      internalID: -1463828315
       vertices: []
       indices: 
       edges: []
@@ -518,6 +770,18 @@ TextureImporter:
       Barrier_5: 1331199494
       Barrier_6: 608203420
       Barrier_7: 1088006836
+      IBullet1_1: 1645905592
+      IBullet1_2: 122065324
+      IBullet1_3: -1586360979
+      IBullet1_4: 1361927806
+      IBullet2_1: 42977284
+      IBullet2_2: 218397288
+      IBullet2_3: -1272615262
+      IBullet2_4: 1423831725
+      IBullet3_1: 520602224
+      IBullet3_2: -1002236955
+      IBullet3_3: 149098156
+      IBullet3_4: -1463828315
       Player_Bullet: 918515664
       explosion: 2128867865
       invader_1_1: -84043821
