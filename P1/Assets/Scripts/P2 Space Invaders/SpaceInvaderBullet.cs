@@ -21,11 +21,9 @@ public class SpaceInvaderBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Trigger enter con " + collision.gameObject.name);
         if (collision.tag == "Player")
         {
-            Debug.Log("JUGADOR GOLPEADO");
-            // Restar vida, actualizar sprites
+            SpaceGameManager.instance.DamagePlayer();
             Destroy(gameObject);
         }
         else if (collision.tag == "SBarrier")

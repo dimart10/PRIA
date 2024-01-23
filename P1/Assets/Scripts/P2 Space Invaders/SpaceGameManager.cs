@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Net.Sockets;
 
 public class SpaceGameManager : MonoBehaviour
 {
@@ -17,9 +18,25 @@ public class SpaceGameManager : MonoBehaviour
 
     private SpaceInvader[,] invaders;
 
-    public int vidas = 2;
+    private int vidas = 2;
     public GameObject[] spritesVidas;
     public TextMeshPro textoVidas;
+    private int score = 0;
+    public TextMeshPro scoreText;
+
+    static public SpaceGameManager instance = null;
+
+    private int deadInvaders = 0;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(this);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +44,6 @@ public class SpaceGameManager : MonoBehaviour
         invaders = new SpaceInvader[iCol,iRow];
         SpawnInvaders();
         InvokeRepeating("RandomShot", 3, 3);
-        InvokeRepeating("DamagePlayer", 5, 5);
     }
 
     // Update is called once per frame
@@ -83,5 +99,17 @@ public class SpaceGameManager : MonoBehaviour
         if (vidas < 0) Debug.Log("GAME OVER");
         else spritesVidas[vidas].SetActive(false);
 
+    }
+
+    public void AddScore(int p)
+    {
+        score += p;
+        scoreText.text = score.ToString();
+    }
+
+    public void UpdateTimeScale()
+    {
+        deadInvaders++;
+        Time.timeScale = 1 + (deadInvaders / invaders.Length)*5;
     }
 }

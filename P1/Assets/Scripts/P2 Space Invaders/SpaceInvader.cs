@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-public enum invaderType {SQUID, CRAB, OCTOPUS};
+public enum invaderType {OCTOPUS, CRAB, SQUID};
 
 public class SpaceInvader : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class SpaceInvader : MonoBehaviour
     public GameObject deathParticle;
     public GameObject invaderBullet;
     public float shotDistance = 0.5f;
+    private bool quitting = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,9 +23,19 @@ public class SpaceInvader : MonoBehaviour
         }
     }
 
+    private void OnApplicationQuit()
+    {
+        quitting = true;
+    }
+
     private void OnDestroy()
     {
-        Instantiate(deathParticle,transform.position, Quaternion.identity);
+        if (!quitting)
+        {
+            SpaceGameManager.instance.AddScore(((int)tipo + 1) * 10);
+            SpaceGameManager.instance.UpdateTimeScale();
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
+        }
     }
 
     public void Shoot()
@@ -33,5 +44,4 @@ public class SpaceInvader : MonoBehaviour
         aux.y -= shotDistance;
         Instantiate(invaderBullet, aux, Quaternion.identity);
     }
-
 }

@@ -99,11 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b566457fdb8440442878d444929fc77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tipo: 0
+  tipo: 2
   animator: {fileID: -229084720311324311}
   father: {fileID: 0}
   deathParticle: {fileID: 8599835844037101210, guid: 0c587fc598440464e94a08a3e9df44d2, type: 3}
   invaderBullet: {fileID: 7237536933664973842, guid: 22e03198888afcb4eb62b83df47eac6e, type: 3}
+  shotDistance: 0.5
 --- !u!61 &-4572599633736599251
 BoxCollider2D:
   m_ObjectHideFlags: 0
