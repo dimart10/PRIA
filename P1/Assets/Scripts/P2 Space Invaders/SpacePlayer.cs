@@ -10,6 +10,7 @@ public class SpacePlayer : MonoBehaviour
     public float playerSpeed = 1f;
     public GameObject bulletPrefab;
     public bool canShoot = true;
+    public AudioClip shootSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -47,5 +48,6 @@ public class SpacePlayer : MonoBehaviour
         SpacePlayerBullet aux = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<SpacePlayerBullet>();
         aux.player = this;
         canShoot = false;
+        //SoundManager.instance.PlaySFX(shootSFX);
     }
 }

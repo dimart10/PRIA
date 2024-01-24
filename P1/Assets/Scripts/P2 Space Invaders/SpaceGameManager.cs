@@ -27,6 +27,7 @@ public class SpaceGameManager : MonoBehaviour
     static public SpaceGameManager instance = null;
 
     private int deadInvaders = 0;
+    public float maxSpeed = 10;
 
     private void Awake()
     {
@@ -110,6 +111,11 @@ public class SpaceGameManager : MonoBehaviour
     public void UpdateTimeScale()
     {
         deadInvaders++;
-        Time.timeScale = 1 + (deadInvaders / invaders.Length)*5;
+        Time.timeScale = 1 + ((float)deadInvaders / (float)invaders.Length)*maxSpeed;
+    }
+
+    public void SetTimeScale(float f)
+    {
+        Time.timeScale = f;
     }
 }

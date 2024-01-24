@@ -7,10 +7,13 @@ public class SpacePlayerBullet : MonoBehaviour
     public float speed = 1f;
     public SpacePlayer player;
 
+    private SoundManager sm;
+    public AudioClip bulletDestroyedSFX;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        sm = SoundManager.instance;   
     }
 
     // Update is called once per frame
