@@ -48,6 +48,6 @@ public class SpacePlayer : MonoBehaviour
         SpacePlayerBullet aux = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<SpacePlayerBullet>();
         aux.player = this;
         canShoot = false;
-        //SoundManager.instance.PlaySFX(shootSFX);
+        SoundManager.instance.PlaySFX(shootSFX);
     }
 }

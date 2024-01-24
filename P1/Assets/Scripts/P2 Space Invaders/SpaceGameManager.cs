@@ -29,6 +29,8 @@ public class SpaceGameManager : MonoBehaviour
     private int deadInvaders = 0;
     public float maxSpeed = 10;
 
+    public AudioClip playerHitSFX;
+
     private void Awake()
     {
         if (instance == null)
@@ -95,6 +97,7 @@ public class SpaceGameManager : MonoBehaviour
 
     public void DamagePlayer()
     {
+        SoundManager.instance.PlaySFX(playerHitSFX);
         vidas--;
         textoVidas.text = (vidas+1).ToString();
         if (vidas < 0) Debug.Log("GAME OVER");
@@ -111,7 +114,12 @@ public class SpaceGameManager : MonoBehaviour
     public void UpdateTimeScale()
     {
         deadInvaders++;
-        Time.timeScale = 1 + ((float)deadInvaders / (float)invaders.Length)*maxSpeed;
+        // En el juego parece que solo se aceleran los enemigos, 
+        // con la línea de abajo, aceleraríamos todo el juego
+        //Time.timeScale = 1 + ((float)deadInvaders / (float)invaders.Length)*maxSpeed;
+
+        // Con esta, aceleramos solo la velocidad de los invaders
+        invadersTransform.speed = 1 + ((float)deadInvaders / (float)invaders.Length) * maxSpeed;
     }
 
     public void SetTimeScale(float f)

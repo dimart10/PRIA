@@ -14,6 +14,7 @@ public class SpaceInvader : MonoBehaviour
     public GameObject invaderBullet;
     public float shotDistance = 0.5f;
     private bool quitting = false;
+    public AudioClip deadInvaderSFX;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -32,6 +33,7 @@ public class SpaceInvader : MonoBehaviour
     {
         if (!quitting)
         {
+            SoundManager.instance.PlaySFX(deadInvaderSFX);
             SpaceGameManager.instance.AddScore(((int)tipo + 1) * 10);
             SpaceGameManager.instance.UpdateTimeScale();
             Instantiate(deathParticle, transform.position, Quaternion.identity);

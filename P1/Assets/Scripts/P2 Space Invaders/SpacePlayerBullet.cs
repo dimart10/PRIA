@@ -8,7 +8,6 @@ public class SpacePlayerBullet : MonoBehaviour
     public SpacePlayer player;
 
     private SoundManager sm;
-    public AudioClip bulletDestroyedSFX;
 
     // Start is called before the first frame update
     void Start()

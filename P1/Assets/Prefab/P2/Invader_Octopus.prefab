@@ -105,6 +105,7 @@ MonoBehaviour:
   deathParticle: {fileID: 8599835844037101210, guid: 0c587fc598440464e94a08a3e9df44d2, type: 3}
   invaderBullet: {fileID: 6114060123636378150, guid: 130e1cced16db6c4e9aa19ca7a39d3ab, type: 3}
   shotDistance: 0.5
+  deadInvaderSFX: {fileID: 8300000, guid: 0566e3cc186f5b1419c75cf167587a9e, type: 3}
 --- !u!61 &-8425489740966182190
 BoxCollider2D:
   m_ObjectHideFlags: 0
