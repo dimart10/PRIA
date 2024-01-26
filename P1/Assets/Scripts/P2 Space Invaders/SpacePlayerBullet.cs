@@ -6,6 +6,7 @@ public class SpacePlayerBullet : MonoBehaviour
 {
     public float speed = 1f;
     public SpacePlayer player;
+    public GameObject bulletExplosion;
 
     private SoundManager sm;
 
@@ -36,10 +37,12 @@ public class SpacePlayerBullet : MonoBehaviour
         {
             Destroy(collision.gameObject);
             Destroy(gameObject);
+            Instantiate(bulletExplosion, transform.position, Quaternion.identity);
         }
         else if (collision.tag == "SBorder")
         {
             Destroy(gameObject);
+            Instantiate(bulletExplosion, transform.position, Quaternion.identity);
         }
     }
 }
