@@ -2038,7 +2038,7 @@ MonoBehaviour:
   squidPrefab: {fileID: 6201183599214269371, guid: db3cddb82ceba1f489c3030fbe1daba3, type: 3}
   octopusPrefab: {fileID: 6201183599214269371, guid: 249278928e7caaa48b6c50c11c452802, type: 3}
   crabPrefab: {fileID: 6201183599214269371, guid: 0da13892b26ea5848987b2084268f5de, type: 3}
-  OVNIPrefab: {fileID: 0}
+  OVNIPrefab: {fileID: 6673612586269242167, guid: 0652b0cc6b32b264391b8e712941600c, type: 3}
   iRow: 5
   iCol: 11
   cellSize: 2.6
@@ -2050,11 +2050,11 @@ MonoBehaviour:
   scoreText: {fileID: 1715787917}
   maxSpeed: 10
   shotTime: 2
-  ovniDelay: 20
+  ovniDelay: 15
   ovniDelayRange: 5
   playerHitSFX: {fileID: 8300000, guid: 2d47f1a9e41548247ac5072c2ae0a184, type: 3}
-  leftOVNISpawn: {fileID: 0}
-  rightOVNISpawn: {fileID: 0}
+  leftOVNISpawn: {fileID: 887838775}
+  rightOVNISpawn: {fileID: 190194068}
 --- !u!4 &1173435428
 Transform:
   m_ObjectHideFlags: 0
@@ -2462,7 +2462,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

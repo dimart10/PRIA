@@ -143,3 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ca04fa56c29ac42aa78ee45e802759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ovniSpeed: 2
+  ovniExplosion: {fileID: 4573242040705473993, guid: 31adef418a5320a49b3fead65640415e, type: 3}
+  ovniSound: {fileID: 8300000, guid: 04e7a5db2b5e7d84488da632c782d993, type: 3}
+  xMovement: 1
+  puntosOVNI: 50

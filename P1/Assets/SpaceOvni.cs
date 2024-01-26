@@ -8,11 +8,12 @@ public class SpaceOvni : MonoBehaviour
     public GameObject ovniExplosion;
     public AudioClip ovniSound;
     public float xMovement = 1f;
+    public int puntosOVNI = 50;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        SoundManager.instance.PlayMusic(ovniSound);
     }
 
     // Update is called once per frame
@@ -25,14 +26,21 @@ public class SpaceOvni : MonoBehaviour
     {
         if (collision.tag == "SBorder")
         {
-            Instantiate(ovniExplosion, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            OVNIDeath();
         }
-        else if(collision.tag == "SPlayerbullet")
+        else if(collision.tag == "SPlayerBullet")
         {
             // Suma puntos por destruir el ovni
+            SpaceGameManager.instance.AddScore(puntosOVNI);
+            Destroy(collision.gameObject);
             Instantiate(ovniExplosion, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            OVNIDeath();
         }
+    }
+
+    private void OVNIDeath()
+    {
+        SoundManager.instance.StopMusic();
+        Destroy(this.gameObject);
     }
 }

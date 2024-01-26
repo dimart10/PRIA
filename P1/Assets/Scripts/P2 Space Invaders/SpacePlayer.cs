@@ -44,7 +44,6 @@ public class SpacePlayer : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("DISPARO PLAYER");
         SpacePlayerBullet aux = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<SpacePlayerBullet>();
         aux.player = this;
         canShoot = false;
