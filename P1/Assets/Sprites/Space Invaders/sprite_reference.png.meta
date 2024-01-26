@@ -752,6 +752,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: OVNI_Destroyed
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 81
+        width: 24
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c041b84a4c6c8454cbf100cb21875c1b
+      internalID: 554463974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BulletExplosion
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 99
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65b0ea7d6693b0845a1aea07861c2172
+      internalID: 1138501297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -770,6 +812,7 @@ TextureImporter:
       Barrier_5: 1331199494
       Barrier_6: 608203420
       Barrier_7: 1088006836
+      BulletExplosion: 1138501297
       IBullet1_1: 1645905592
       IBullet1_2: 122065324
       IBullet1_3: -1586360979
@@ -782,6 +825,7 @@ TextureImporter:
       IBullet3_2: -1002236955
       IBullet3_3: 149098156
       IBullet3_4: -1463828315
+      OVNI_Destroyed: 554463974
       Player_Bullet: 918515664
       explosion: 2128867865
       invader_1_1: -84043821

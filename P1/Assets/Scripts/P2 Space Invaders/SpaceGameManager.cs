@@ -9,6 +9,7 @@ public class SpaceGameManager : MonoBehaviour
     public GameObject squidPrefab;
     public GameObject octopusPrefab;
     public GameObject crabPrefab;
+    public GameObject OVNIPrefab;
 
     public int iRow = 5;
     public int iCol = 11;
@@ -28,8 +29,14 @@ public class SpaceGameManager : MonoBehaviour
 
     private int deadInvaders = 0;
     public float maxSpeed = 10;
+    public float shotTime = 2;
+    public float ovniDelay = 20f;
+    public float ovniDelayRange = 5f;
 
     public AudioClip playerHitSFX;
+
+    public Transform leftOVNISpawn;
+    public Transform rightOVNISpawn;
 
     private void Awake()
     {
@@ -46,7 +53,9 @@ public class SpaceGameManager : MonoBehaviour
     {
         invaders = new SpaceInvader[iCol,iRow];
         SpawnInvaders();
-        InvokeRepeating("RandomShot", 3, 3);
+        InvokeRepeating("RandomShot", shotTime, shotTime);
+        float firstOVNITime = Random.Range(ovniDelay - ovniDelayRange, ovniDelay + ovniDelayRange);
+        Invoke("SpawnOVNI", firstOVNITime);
     }
 
     // Update is called once per frame
@@ -111,6 +120,29 @@ public class SpaceGameManager : MonoBehaviour
         scoreText.text = score.ToString();
     }
 
+    public void SpawnOVNI()
+    {
+        SpaceOvni ovni;
+        // Lo spawneo a la izquierda
+        if (Random.Range(0, 2) == 0)
+        {
+            ovni = Instantiate(OVNIPrefab, leftOVNISpawn.position, Quaternion.identity).GetComponent<SpaceOvni>();
+            // Lo modifico para que vaya a la derecha
+            ovni.xMovement = 1;
+        }
+        // Lo spawneo a la derecha
+        else
+        {
+            ovni = Instantiate(OVNIPrefab, rightOVNISpawn.position, Quaternion.identity).GetComponent<SpaceOvni>();
+            // Lo modifico para que vaya a la izquierda
+            ovni.xMovement = -1;
+        }
+
+        // Preparo el siguiente spawn de ovni
+        float nextOVNITime = Random.Range(ovniDelay - ovniDelayRange, ovniDelay + ovniDelayRange);
+        Invoke("SpawnOVNI", nextOVNITime);
+    }
+
     public void UpdateTimeScale()
     {
         deadInvaders++;
@@ -125,5 +157,10 @@ public class SpaceGameManager : MonoBehaviour
     public void SetTimeScale(float f)
     {
         Time.timeScale = f;
+    }
+
+    public void OnGameOver()
+    {
+        CancelInvoke();
     }
 }
