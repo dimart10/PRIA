@@ -42,13 +42,9 @@ public class SpaceInvaderBullet : MonoBehaviour
             Instantiate(bulletExplosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Choque de balas");
-        if (collision.gameObject.tag == "SPlayerBullet")
+        else if (collision.tag == "SPlayerBullet")
         {
+            Debug.Log("Trigger de balas");
             Instantiate(bulletExplosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
             Destroy(collision.gameObject);
