@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4192851394611320074}
   - component: {fileID: 1643195200846095151}
   - component: {fileID: 7135570462939890872}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Alien_2
   m_TagString: SInvader
   m_Icon: {fileID: 0}

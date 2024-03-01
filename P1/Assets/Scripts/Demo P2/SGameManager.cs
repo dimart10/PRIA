@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SGameManager : MonoBehaviour
 {
@@ -21,8 +24,28 @@ public class SGameManager : MonoBehaviour
     public SinvaderMovement padreAliens;
     // Distancia entre aliens al spawnearlos
     public float distanciaAliens = 1;
-
+    // Tiempo entre disparos de los aliens
     public float tiempoEntreDisparos = 2f;
+
+    // CICLO DE JUEGO
+    // Fin de la partida
+    public bool gameOver = false;
+    // Vidas actuales del jugador
+    public int vidas = 3;
+    // Puntuación actual del jugador
+    public int score = 0;
+    // Nº aliens derrotados
+    private int defeatedAliens = 0;
+
+    // SINGLETON
+    public static SGameManager instance = null;
+
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -88,4 +111,42 @@ public class SGameManager : MonoBehaviour
         }
     }
 
+    // Método que se llama cuando perdemos la partida (nos quedamos sin vidas, o los aliens llegan abajo)
+    public void PlayerGamerOver()
+    {
+        gameOver = true;
+        CancelInvoke(); // Interrumpimos todos los invokes de este componente (se deja de disparar)
+        Debug.Log("el jugador ha perdido");
+    }
+
+    public void PlayerWin()
+    {
+        gameOver = true;
+        CancelInvoke(); // Interrumpimos todos los invokes de este componente (se deja de disparar)
+        Debug.Log("el jugador ha ganado");
+    }
+
+    public void DamagePlayer()
+    {
+        vidas--;
+        if (vidas <= 0)
+        {
+            PlayerGamerOver();
+        }
+    }
+
+    // Comprueba si el jugador ha ganado (si ha destruido a todos los aliens)
+    public void AlienDestroyed()
+    {
+        defeatedAliens++; // Aumento la cuenta de aliens derrotados
+        if(defeatedAliens >= nFilas * nColumnas) // Si ha derrotado a todos los aliens
+        {
+            PlayerWin(); // El jugador gana
+        }
+    }
+
+    public void ResetGame()
+    {
+        SceneManager.LoadScene("DemoInvaders");
+    }
 }

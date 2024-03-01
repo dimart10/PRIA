@@ -38,12 +38,17 @@ public class SInvader : MonoBehaviour
             // LLamar a SwitchDirection para que se gire el padre
             padre.SwitchDirection();
         }
+        else if(collision.gameObject.layer == 8)
+        {
+            SGameManager.instance.PlayerGamerOver();
+        }
     }
 
     public void OnApplicationQuit() // Se llama al cerrar la aplicación, antes del OnDestroy
     {
         isQuitting = true;
     }
+
 
     private void OnDestroy() // Se llama al destruir el objeto
     {
