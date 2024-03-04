@@ -12,6 +12,10 @@ public class SInvader : MonoBehaviour
 
     public float bulletSpawnYOffset = -0.5f;
 
+    public int puntosGanados = 10;
+
+    public static int speed = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,11 +38,10 @@ public class SInvader : MonoBehaviour
         Debug.Log("Colision alien");
         if(collision.tag == "SBorder") // Choca con borde de pantalla
         {
-            Debug.Log("Colision con borde");
             // LLamar a SwitchDirection para que se gire el padre
             padre.SwitchDirection();
         }
-        else if(collision.gameObject.layer == 8)
+        else if(collision.gameObject.layer == LayerMask.NameToLayer("SGameOverBarrier"))
         {
             SGameManager.instance.PlayerGamerOver();
         }
@@ -52,10 +55,12 @@ public class SInvader : MonoBehaviour
 
     private void OnDestroy() // Se llama al destruir el objeto
     {
-
         if (isQuitting == false) {
             GameObject particula = Instantiate(particulaMuerte, transform.position, Quaternion.identity);
             // Destroy(particula, 0.3f); Destruimos la particula dentro de 0,3f segundos
+
+            // Suma puntos
+            SGameManager.instance.AddScore(puntosGanados);
         }
     }
 }

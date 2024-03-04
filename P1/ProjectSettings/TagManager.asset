@@ -9,6 +9,7 @@ TagManager:
   - SBorder
   - SBarrier
   - SInvaderBullet
+  - SGameOverBarrier
   layers:
   - Default
   - TransparentFX

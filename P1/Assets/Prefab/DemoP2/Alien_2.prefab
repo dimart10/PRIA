@@ -170,3 +170,4 @@ MonoBehaviour:
   padre: {fileID: 0}
   invaderBullet: {fileID: 3645626672625619898, guid: 24286d81c6a3f5d46b317b0e450f8fdf, type: 3}
   bulletSpawnYOffset: -0.5
+  puntosGanados: 20

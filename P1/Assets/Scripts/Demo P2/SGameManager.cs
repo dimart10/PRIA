@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -39,6 +40,12 @@ public class SGameManager : MonoBehaviour
 
     // SINGLETON
     public static SGameManager instance = null;
+
+    // Interfaz
+    public TextMeshPro scoreText; // Texto de la puntuación
+    public TextMeshPro lifesText; // Texto con nº vidas
+    public GameObject spriteVida3; // Sprites de las vidas del jugador
+    public GameObject spriteVida2;
 
     private void Awake()
     {
@@ -129,10 +136,20 @@ public class SGameManager : MonoBehaviour
     public void DamagePlayer()
     {
         vidas--;
+        UpdateLifeUI();
         if (vidas <= 0)
         {
             PlayerGamerOver();
         }
+    }
+
+    private void UpdateLifeUI()
+    {
+        // Actualiza el texto
+        lifesText.text = vidas.ToString();
+        // Actualizar los sprites de las vidas
+        spriteVida2.SetActive(vidas >= 2); // Se activa si vidas >= 2
+        spriteVida3.SetActive(vidas >= 3); // Se activa si vidas >= 3
     }
 
     // Comprueba si el jugador ha ganado (si ha destruido a todos los aliens)
@@ -148,5 +165,12 @@ public class SGameManager : MonoBehaviour
     public void ResetGame()
     {
         SceneManager.LoadScene("DemoInvaders");
+    }
+    
+    // Suma points puntos a la puntuacion
+    public void AddScore(int points)
+    {
+        score += points;
+        scoreText.text = "SCORE\n" + score.ToString(); // Actualizar texto puntos
     }
 }
