@@ -11,17 +11,25 @@ public class SpacePlayer : MonoBehaviour
     public GameObject bulletPrefab;
     public bool canShoot = true;
     public AudioClip shootSFX;
+    private Vector3 startPos;
+    private Animator pAnimator;
+    private bool lockInput = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        startPos = transform.position;
+        pAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        InputPlayer();
+        if (!lockInput)
+        {
+            InputPlayer();
+        }
     }
 
     private void InputPlayer()
@@ -48,5 +56,18 @@ public class SpacePlayer : MonoBehaviour
         aux.player = this;
         canShoot = false;
         SoundManager.instance.PlaySFX(shootSFX);
+    }
+
+    public void Reset()
+    {
+        transform.position = startPos;
+        pAnimator.Play("PlayerIdle");
+        lockInput = false;
+    }
+
+    public void PlayerDamaged()
+    {
+        pAnimator.Play("PlayerDamage");
+        lockInput = true;
     }
 }

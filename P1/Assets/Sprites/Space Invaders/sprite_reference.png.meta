@@ -782,7 +782,7 @@ TextureImporter:
         width: 6
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -790,6 +790,48 @@ TextureImporter:
       bones: []
       spriteID: 65b0ea7d6693b0845a1aea07861c2172
       internalID: 1138501297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_damage_1
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 71
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd5be7fa50730834396ca13010e2440b
+      internalID: -1721422062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_damage_2
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 71
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fc521f2e33cc8145a5bb7b82503b49e
+      internalID: -1562204064
       vertices: []
       indices: 
       edges: []
@@ -836,6 +878,8 @@ TextureImporter:
       invader_3_2: 1999652566
       ovni: 2128867865
       player: -151631440
+      player_damage_1: -1721422062
+      player_damage_2: -1562204064
       sprite_reference_0: -542346105
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

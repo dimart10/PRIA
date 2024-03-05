@@ -9,6 +9,8 @@ public class SpaceInvadersMovement : MonoBehaviour
     private bool canSwitch = true;
     public float switchCooldown = 1f;
 
+    public bool canMove = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,7 @@ public class SpaceInvadersMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        if (canMove) Movement();
     }
 
   

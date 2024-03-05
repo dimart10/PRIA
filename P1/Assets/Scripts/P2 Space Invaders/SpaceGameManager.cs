@@ -38,6 +38,10 @@ public class SpaceGameManager : MonoBehaviour
     public Transform leftOVNISpawn;
     public Transform rightOVNISpawn;
 
+    public float damagePlayerDelay = 1.5f;
+
+    private SpacePlayer player;
+
     private void Awake()
     {
         if (instance == null)
@@ -51,6 +55,7 @@ public class SpaceGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = FindObjectOfType<SpacePlayer>();
         invaders = new SpaceInvader[iCol,iRow];
         SpawnInvaders();
         InvokeRepeating("RandomShot", shotTime, shotTime);
@@ -111,7 +116,20 @@ public class SpaceGameManager : MonoBehaviour
         textoVidas.text = (vidas+1).ToString();
         if (vidas < 0) Debug.Log("GAME OVER");
         else spritesVidas[vidas].SetActive(false);
+        PlayerDamagePause();
+    }
 
+    private void PlayerDamagePause()
+    {
+        invadersTransform.canMove = false;
+        player.PlayerDamaged();
+        Invoke("ResumeGameAfterDamage", damagePlayerDelay);
+    }
+
+    private void ResumeGameAfterDamage()
+    {
+        invadersTransform.canMove = true;
+        player.Reset();
     }
 
     public void AddScore(int p)
