@@ -43,7 +43,7 @@ public class SInvader : MonoBehaviour
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("SGameOverBarrier"))
         {
-            SGameManager.instance.PlayerGamerOver();
+            SGameManager.instance.PlayerGameOver();
         }
     }
 

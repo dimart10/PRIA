@@ -20,23 +20,38 @@ public class SPlayer : MonoBehaviour
     public Transform posDisparo;
 
     public bool canShoot = true;
+    private bool canMove = true;
+
+    // animator del jugador
+    private Animator pAnimator;
+
+    private Vector3 posInicial;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        posInicial = transform.position;
+        pAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(canShoot && Input.GetKeyDown(shootKey))
+        if (canMove)
+        {
+            InputPlayer();
+        }
+    }
+
+    private void InputPlayer()
+    {
+        if (canShoot && Input.GetKeyDown(shootKey))
         {
             // DISPARA
             Shoot();
         }
-        else if(Input.GetKey(moveLeftKey))
+        else if (Input.GetKey(moveLeftKey))
         {
             // Voy a la izquierda
             transform.position += new Vector3(-speed, 0, 0) * Time.deltaTime;
@@ -50,10 +65,22 @@ public class SPlayer : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("Disparo");
         GameObject aux = Instantiate(prefabBullet, posDisparo.position, Quaternion.identity);
         SPlayerBullet bullet = aux.GetComponent<SPlayerBullet>();
         bullet.player = this;
         canShoot = false;
+    }
+
+    public void PlayerDamaged()
+    {
+        pAnimator.Play("player_death");
+        canMove = false;
+    }
+
+    public void PlayerReset()
+    {
+        pAnimator.Play("player_idle");
+        canMove = true;
+        transform.position = posInicial;
     }
 }

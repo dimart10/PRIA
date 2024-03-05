@@ -16,6 +16,9 @@ public class SGameManager : MonoBehaviour
     // Nº columnas de invaders, ancho
     public int nColumnas = 11;
 
+    // Jugador
+    private SPlayer player;
+
     // Prefab de alien
     public GameObject alien1Prefab;
     public GameObject alien2Prefab;
@@ -57,6 +60,9 @@ public class SGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Busco al jugador y lo guardo
+        player = FindObjectOfType<SPlayer>();
+        
         // Decimos que matrizAliens es una nueva matriz de SInvaders de nColumnas x nFilas
         // - INICIALIZACIÓN
         matrizAliens = new SInvader[nColumnas, nFilas];
@@ -119,7 +125,7 @@ public class SGameManager : MonoBehaviour
     }
 
     // Método que se llama cuando perdemos la partida (nos quedamos sin vidas, o los aliens llegan abajo)
-    public void PlayerGamerOver()
+    public void PlayerGameOver()
     {
         gameOver = true;
         CancelInvoke(); // Interrumpimos todos los invokes de este componente (se deja de disparar)
@@ -137,10 +143,18 @@ public class SGameManager : MonoBehaviour
     {
         vidas--;
         UpdateLifeUI();
+        // Animacíon de daño del jugador
+        player.PlayerDamaged();
+        Invoke("UnlockDamagedPlayer", 1.5f);
         if (vidas <= 0)
         {
-            PlayerGamerOver();
+            PlayerGameOver();
         }
+    }
+
+    private void UnlockDamagedPlayer()
+    {
+        player.PlayerReset();
     }
 
     private void UpdateLifeUI()
