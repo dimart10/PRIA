@@ -1676,7 +1676,7 @@ GameObject:
   m_Layer: 0
   m_Name: DeadZoneDOWN
   m_TagString: SBorder
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1732,7 +1732,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 892171199}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -2056,6 +2056,7 @@ MonoBehaviour:
   leftOVNISpawn: {fileID: 887838775}
   rightOVNISpawn: {fileID: 190194068}
   damagePlayerDelay: 1.5
+  gameOver: 0
 --- !u!4 &1173435428
 Transform:
   m_ObjectHideFlags: 0
@@ -2718,6 +2719,7 @@ MonoBehaviour:
   dir: 1
   switchCooldown: 1
   canMove: 1
+  gameOverY: -15
 --- !u!1 &1947208393
 GameObject:
   m_ObjectHideFlags: 0
