@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Net.Sockets;
+using UnityEngine.SceneManagement;
 
 public class SpaceGameManager : MonoBehaviour
 {
@@ -42,12 +43,13 @@ public class SpaceGameManager : MonoBehaviour
 
     private SpacePlayer player;
 
+    public bool gameOver = false;
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else Destroy(this);
     }
@@ -67,6 +69,11 @@ public class SpaceGameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void ResetScene()
+    {
+        SceneManager.LoadScene("Space Invaders");
     }
 
     private void SpawnInvaders()
@@ -114,7 +121,10 @@ public class SpaceGameManager : MonoBehaviour
         SoundManager.instance.PlaySFX(playerHitSFX);
         vidas--;
         textoVidas.text = (vidas+1).ToString();
-        if (vidas < 0) Debug.Log("GAME OVER");
+        if (vidas < 0) { 
+            Debug.Log("GAME OVER");
+            OnGameOver();
+        }
         else spritesVidas[vidas].SetActive(false);
         PlayerDamagePause();
     }
@@ -179,6 +189,8 @@ public class SpaceGameManager : MonoBehaviour
 
     public void OnGameOver()
     {
+        gameOver = true;
         CancelInvoke();
+        Invoke("ResetScene", 3f);
     }
 }

@@ -11,6 +11,8 @@ public class SpaceInvadersMovement : MonoBehaviour
 
     public bool canMove = true;
 
+    public float gameOverY = -15f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +45,13 @@ public class SpaceInvadersMovement : MonoBehaviour
     private void GoDown()
     {
         transform.position += new Vector3(0, -1, 0);
+        Debug.Log(transform.position.y);
+        Debug.Log(transform.position.y < gameOverY);
+
+        if (transform.position.y < gameOverY)
+        {
+            SpaceGameManager.instance.OnGameOver();
+        }
     }
 
     private void EnableSwitch()

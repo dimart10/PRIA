@@ -22,21 +22,14 @@ public class SpaceInvader : MonoBehaviour
         {
             father.SwitchDir();
         }
-    }
-
-    private void OnApplicationQuit()
-    {
-        quitting = true;
-    }
-
-    private void OnDestroy()
-    {
-        if (!quitting)
+        else if(collision.tag == "SPlayerBullet")
         {
+            Destroy(collision.gameObject);
             SoundManager.instance.PlaySFX(deadInvaderSFX);
             SpaceGameManager.instance.AddScore(((int)tipo + 1) * 10);
             SpaceGameManager.instance.UpdateTimeScale();
             Instantiate(deathParticle, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 

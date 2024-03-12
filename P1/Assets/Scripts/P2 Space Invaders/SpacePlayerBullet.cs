@@ -28,12 +28,7 @@ public class SpacePlayerBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "SInvader")
-        {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
-        else if(collision.tag == "SBarrier")
+        if(collision.tag == "SBarrier")
         {
             Destroy(collision.gameObject);
             Destroy(gameObject);
