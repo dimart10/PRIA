@@ -40,6 +40,10 @@ public class SGameManager : MonoBehaviour
     public int score = 0;
     // Nº aliens derrotados
     private int defeatedAliens = 0;
+    // Tiempo que dura la animación de daño del jugador
+    public float playerDamageDelay = 1.5f;
+    // Multiplicador que aumenta la velocidad de los aliens
+    public float incVel = 3;
 
     // SINGLETON
     public static SGameManager instance = null;
@@ -49,6 +53,12 @@ public class SGameManager : MonoBehaviour
     public TextMeshPro lifesText; // Texto con nº vidas
     public GameObject spriteVida3; // Sprites de las vidas del jugador
     public GameObject spriteVida2;
+
+    // OVNIs
+    public GameObject prefabOVNI; // Prefab del OVNI
+    public Transform spawnIzqOVNI; // Posicion de OVNI a la izquierda
+    public Transform spawnDerOVNI; // Posición de OVNI a la derecha
+    public float spawnOVNITime = 15f; // Tiempo que tarda un OVNI en aparecer
 
     private void Awake()
     {
@@ -69,6 +79,7 @@ public class SGameManager : MonoBehaviour
         SpawnAliens();
 
         InvokeRepeating("SelectAlienShoot", tiempoEntreDisparos, tiempoEntreDisparos);
+        InvokeRepeating("SpawnOVNI", spawnOVNITime, spawnOVNITime);
     }
 
     void SpawnAliens()
@@ -94,6 +105,23 @@ public class SGameManager : MonoBehaviour
             }
         }
 
+    }
+
+    void SpawnOVNI()
+    {
+        // Elegir una dirección aleatoria
+        int random = Random.Range(0, 2); // entre 0 y 1
+
+        if (random == 0) // Si sale 0, lo colocamos a la izquierda
+        {
+            // Crearlo y Ponerle la dirección apropiada
+            Instantiate(prefabOVNI, spawnIzqOVNI).GetComponent<SOvni>().dir = 1; 
+        }
+        else if (random == 1)  // Si sale 1, lo colocamos a la derecha
+        {
+            // Crearlo y asignar la dirección
+            Instantiate(prefabOVNI, spawnDerOVNI).GetComponent<SOvni>().dir = -1;
+        }
     }
 
     // Busca el alien más cercano al jugador en una columna aleatoria y le dice que dispare
@@ -141,20 +169,27 @@ public class SGameManager : MonoBehaviour
 
     public void DamagePlayer()
     {
-        vidas--;
-        UpdateLifeUI();
-        // Animacíon de daño del jugador
-        player.PlayerDamaged();
-        Invoke("UnlockDamagedPlayer", 1.5f);
-        if (vidas <= 0)
+        if (!gameOver && player.GetCanMove())
         {
-            PlayerGameOver();
+            vidas--;
+            UpdateLifeUI();
+            // Animacíon de daño del jugador
+            player.PlayerDamaged();
+            padreAliens.canMove = false; // Bloqueo los aliens
+            SetInvadersAnim(false);
+            Invoke("UnlockDamagedPlayer", playerDamageDelay);
+            if (vidas <= 0)
+            {
+                PlayerGameOver();
+            }
         }
     }
 
     private void UnlockDamagedPlayer()
     {
-        player.PlayerReset();
+        player.PlayerReset(); // Desbloqueo al jugador
+        padreAliens.canMove = true; // Desbloqueo los aliens
+        SetInvadersAnim(true);
     }
 
     private void UpdateLifeUI()
@@ -170,6 +205,11 @@ public class SGameManager : MonoBehaviour
     public void AlienDestroyed()
     {
         defeatedAliens++; // Aumento la cuenta de aliens derrotados
+        
+        // Actualizar velocidad de los aliens según cuántos quedan
+        // Suma incVelocidad / aliensTotales
+        padreAliens.speed += (incVel / (float)(nFilas * nColumnas));
+
         if(defeatedAliens >= nFilas * nColumnas) // Si ha derrotado a todos los aliens
         {
             PlayerWin(); // El jugador gana
@@ -186,5 +226,22 @@ public class SGameManager : MonoBehaviour
     {
         score += points;
         scoreText.text = "SCORE\n" + score.ToString(); // Actualizar texto puntos
+    }
+
+    // Recorre la lista de aliens, y les pone la animacíon indicada
+    public void SetInvadersAnim(bool movement)
+    {
+        for(int i = 0; i < nColumnas; i++)
+        {
+            for (int j = 0; j < nFilas; j++)
+            {
+                if (matrizAliens[i, j] != null) // comprobamos que existe
+                {
+                    // Asignamos la animación que toque
+                    if (movement) matrizAliens[i, j].MovementAnimation();
+                    else matrizAliens[i, j].StunAnimation();
+                }
+            }
+        }
     }
 }

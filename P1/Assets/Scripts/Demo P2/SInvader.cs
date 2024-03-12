@@ -1,9 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum InvaderType {SQUID, CRAB, OCTOPUS};
+
 public class SInvader : MonoBehaviour
 {
+    public InvaderType tipo = InvaderType.SQUID;
+
     public GameObject particulaMuerte;
     public bool isQuitting = false;
     public SinvaderMovement padre;
@@ -16,9 +21,12 @@ public class SInvader : MonoBehaviour
 
     public static int speed = 3;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -58,9 +66,34 @@ public class SInvader : MonoBehaviour
         if (isQuitting == false) {
             GameObject particula = Instantiate(particulaMuerte, transform.position, Quaternion.identity);
             // Destroy(particula, 0.3f); Destruimos la particula dentro de 0,3f segundos
-
+            // Stun a los aliens (movimiento)
+            padre.AlienDestroyedStun();
             // Suma puntos
             SGameManager.instance.AddScore(puntosGanados);
         }
+    }
+
+    public void MovementAnimation()
+    {
+        // Reproduce la animación idle según el tipo
+        if(tipo == InvaderType.SQUID)
+        {
+            animator.Play("alien_1_idle");
+        }
+        else if(tipo == InvaderType.CRAB)
+        {
+            animator.Play("alien_2_idle");
+        }
+        else if (tipo == InvaderType.OCTOPUS)
+        {
+            animator.Play("alien_3_idle");
+        }
+
+        // animator.Play("alien_" + ((int)tipo+1).ToString() + "_idle");
+    }
+
+    public void StunAnimation()
+    {
+        animator.Play("alien_" + ((int)tipo + 1).ToString() + "_stun");
     }
 }

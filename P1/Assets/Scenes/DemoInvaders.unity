@@ -163,10 +163,16 @@ MonoBehaviour:
   gameOver: 0
   vidas: 3
   score: 0
+  playerDamageDelay: 1.5
+  incVel: 3
   scoreText: {fileID: 58146271}
   lifesText: {fileID: 775196854}
   spriteVida3: {fileID: 460099363}
   spriteVida2: {fileID: 1060690620}
+  prefabOVNI: {fileID: 2169615636881161721, guid: b88599f9fdc09c84786364b82958d4d9, type: 3}
+  spawnIzqOVNI: {fileID: 769629115}
+  spawnDerOVNI: {fileID: 1372712440}
+  spawnOVNITime: 20
 --- !u!4 &14114616
 Transform:
   m_ObjectHideFlags: 0
@@ -381,7 +387,7 @@ Transform:
   m_GameObject: {fileID: 82107906}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.8, z: 0}
+  m_LocalPosition: {x: 0, y: 3.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -401,8 +407,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   despAbajo: 0.6
+  originalSpeed: 3
   canSwitch: 1
   switchDelay: 0.5
+  canMove: 1
+  moveStunTime: 0.5
 --- !u!1 &203369412
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +499,7 @@ Transform:
   m_GameObject: {fileID: 394555405}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.18, y: -9.62, z: 0}
+  m_LocalPosition: {x: -4.18, y: -9.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -706,7 +715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7216907661874547559, guid: dc2258362725c0d43aeb2f85b8825f55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.1
+      value: -6.71
       objectReference: {fileID: 0}
     - target: {fileID: 7216907661874547559, guid: dc2258362725c0d43aeb2f85b8825f55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -871,6 +880,37 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -11.45, z: 0}
   m_LocalScale: {x: 19.65, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &769629114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 769629115}
+  m_Layer: 0
+  m_Name: SpawnIzqOVNI
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &769629115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769629114}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.75, y: 7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1194,7 +1234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7216907661874547559, guid: dc2258362725c0d43aeb2f85b8825f55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.1
+      value: -6.71
       objectReference: {fileID: 0}
     - target: {fileID: 7216907661874547559, guid: dc2258362725c0d43aeb2f85b8825f55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1251,7 +1291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7216907661874547559, guid: dc2258362725c0d43aeb2f85b8825f55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.1
+      value: -6.71
       objectReference: {fileID: 0}
     - target: {fileID: 7216907661874547559, guid: dc2258362725c0d43aeb2f85b8825f55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1392,7 +1432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7216907661874547559, guid: dc2258362725c0d43aeb2f85b8825f55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.1
+      value: -6.71
       objectReference: {fileID: 0}
     - target: {fileID: 7216907661874547559, guid: dc2258362725c0d43aeb2f85b8825f55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1431,6 +1471,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc2258362725c0d43aeb2f85b8825f55, type: 3}
+--- !u!1 &1372712439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1372712440}
+  m_Layer: 0
+  m_Name: SpawnDerONI
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1372712440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372712439}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.75, y: 7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1588701345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,7 +1899,7 @@ Transform:
   m_GameObject: {fileID: 1809408996}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -7.81, z: 0}
+  m_LocalPosition: {x: 0, y: -8.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1848,12 +1919,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabBullet: {fileID: 3206276427608996860, guid: 2bb9ef70aa78d0f42b494aaf78eea2fd, type: 3}
-  speed: 2
+  speed: 4
   shootKey: 32
   moveLeftKey: 97
   moveRightKey: 100
   posDisparo: {fileID: 203369413}
   canShoot: 1
+  limiteHorizontal: 7.5
 --- !u!61 &1809409000
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1883,7 +1955,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2006,3 +2078,5 @@ SceneRoots:
   - {fileID: 580759934}
   - {fileID: 58146273}
   - {fileID: 394555406}
+  - {fileID: 769629115}
+  - {fileID: 1372712440}

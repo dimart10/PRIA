@@ -10,6 +10,7 @@ TagManager:
   - SBarrier
   - SInvaderBullet
   - SGameOverBarrier
+  - SOvni
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - SInvaders
   - SBarrier
   - SGameOverBarrier
-  - 
+  - SOvni
   - 
   - 
   - 

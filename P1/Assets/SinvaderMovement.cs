@@ -7,11 +7,16 @@ public class SinvaderMovement : MonoBehaviour
     public float speed = 3f; // velocidad de movimiento en eje x
     public float despAbajo = 1f; // distancia que baja al cambiar de dirección
     private int dir = 1; // +1 para la derecha, -1 para la izquierda
+    [HideInInspector]
+    public float originalSpeed = 3f; // Velocidad inicial
 
     public bool canSwitch = true; // Bool que indica si puede girarse
     public float switchDelay = 0.5f; // Tiempo que debe pasar despues de girar, para poder volver a hacerlo
+    public bool canMove = true; // Bool que indica si puede moverse
+    public float moveStunTime = 0.5f; // Tiempo que se paran los aliens al destruirse uno
 
-    private SGameManager gm;
+    private SGameManager gm; // Referencia al GameManager
+
 
     /*
      * 1 - Después de girar, pongo canSwitch a false
@@ -24,14 +29,15 @@ public class SinvaderMovement : MonoBehaviour
     void Start()
     {
         gm = SGameManager.instance;
+        originalSpeed = speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!gm.gameOver)
+        if (!gm.gameOver && canMove)
         {
-            Movement();
+           Movement();
         }
     }
 
@@ -56,4 +62,20 @@ public class SinvaderMovement : MonoBehaviour
     {
         canSwitch = true;
     }
+
+    public void EnableMovement()
+    {
+        canMove = true; // Activar movimiento
+        gm.SetInvadersAnim(true); // Poner animación movimiento
+    }
+
+    // Método que se llama cuando se destruye un alien y que para su movimiento un tiempo
+    public void AlienDestroyedStun() 
+    {
+        canMove = false; // Paramos el movimiento
+        gm.SetInvadersAnim(false); // Poner animación stun
+        Invoke("EnableMovement", moveStunTime); // Reactivamos el movimiento tras un tiempo
+    }
+
+
 }

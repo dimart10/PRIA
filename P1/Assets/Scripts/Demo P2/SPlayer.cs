@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SPlayer : MonoBehaviour
 {
@@ -24,8 +25,10 @@ public class SPlayer : MonoBehaviour
 
     // animator del jugador
     private Animator pAnimator;
-
     private Vector3 posInicial;
+
+    // Valores límite de desplazamiento lateral
+    public float limiteHorizontal = 8f;
 
 
     // Start is called before the first frame update
@@ -55,11 +58,27 @@ public class SPlayer : MonoBehaviour
         {
             // Voy a la izquierda
             transform.position += new Vector3(-speed, 0, 0) * Time.deltaTime;
+            // Comprobar límites
+            if(transform.position.x < -limiteHorizontal)
+            {
+                // Si me paso, lo pongo en la posición límite
+                Vector3 aux = transform.position;
+                aux.x = -limiteHorizontal;
+                transform.position = aux;
+            }
         }
         else if (Input.GetKey(moveRightKey))
         {
             // Voy a la derecha
             transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
+            // Comprobar límites
+            if (transform.position.x > limiteHorizontal)
+            {
+                // Si me paso me pongo en la posición límite
+                Vector3 aux = transform.position;
+                aux.x = limiteHorizontal;
+                transform.position = aux;
+            }
         }
     }
 
@@ -82,5 +101,15 @@ public class SPlayer : MonoBehaviour
         pAnimator.Play("player_idle");
         canMove = true;
         transform.position = posInicial;
+    }
+
+    public bool GetCanMove()
+    {
+        return canMove;
+    }
+
+    public void SetCanMove(bool b)
+    {
+        canMove = b;
     }
 }
