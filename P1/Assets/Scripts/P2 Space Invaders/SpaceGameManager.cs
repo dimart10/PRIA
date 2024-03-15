@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Net.Sockets;
 using UnityEngine.SceneManagement;
+using System.Security.Cryptography;
 
 public class SpaceGameManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class SpaceGameManager : MonoBehaviour
     public TextMeshPro textoVidas;
     private int score = 0;
     public TextMeshPro scoreText;
+    public TextMeshPro maxScoreText;
 
     static public SpaceGameManager instance = null;
 
@@ -45,6 +47,8 @@ public class SpaceGameManager : MonoBehaviour
 
     public bool gameOver = false;
 
+    public int maxScore = 0;
+
     private void Awake()
     {
         if (instance == null)
@@ -63,6 +67,8 @@ public class SpaceGameManager : MonoBehaviour
         InvokeRepeating("RandomShot", shotTime, shotTime);
         float firstOVNITime = Random.Range(ovniDelay - ovniDelayRange, ovniDelay + ovniDelayRange);
         Invoke("SpawnOVNI", firstOVNITime);
+        maxScore = PlayerPrefs.GetInt("MaxScore");
+        maxScoreText.text = maxScore.ToString();
     }
 
     // Update is called once per frame
@@ -73,7 +79,21 @@ public class SpaceGameManager : MonoBehaviour
 
     private void ResetScene()
     {
+        SaveMaxScore();
         SceneManager.LoadScene("Space Invaders");
+    }
+
+    private void SaveMaxScore()
+    {
+        if (score > maxScore)
+        {
+            PlayerPrefs.SetInt("MaxScore", score);
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveMaxScore();
     }
 
     private void SpawnInvaders()

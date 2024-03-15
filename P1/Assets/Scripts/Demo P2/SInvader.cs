@@ -10,7 +10,6 @@ public class SInvader : MonoBehaviour
     public InvaderType tipo = InvaderType.SQUID;
 
     public GameObject particulaMuerte;
-    public bool isQuitting = false;
     public SinvaderMovement padre;
 
     public GameObject invaderBullet;
@@ -49,27 +48,22 @@ public class SInvader : MonoBehaviour
             // LLamar a SwitchDirection para que se gire el padre
             padre.SwitchDirection();
         }
-        else if(collision.gameObject.layer == LayerMask.NameToLayer("SGameOverBarrier"))
+        else if (collision.tag == "SPlayerBullet") // Choca con un alien
         {
-            SGameManager.instance.PlayerGameOver();
-        }
-    }
+            SGameManager.instance.AlienDestroyed(); // Aviso al game manager de que se ha destruido un alien
 
-    public void OnApplicationQuit() // Se llama al cerrar la aplicación, antes del OnDestroy
-    {
-        isQuitting = true;
-    }
-
-
-    private void OnDestroy() // Se llama al destruir el objeto
-    {
-        if (isQuitting == false) {
             GameObject particula = Instantiate(particulaMuerte, transform.position, Quaternion.identity);
             // Destroy(particula, 0.3f); Destruimos la particula dentro de 0,3f segundos
             // Stun a los aliens (movimiento)
             padre.AlienDestroyedStun();
             // Suma puntos
             SGameManager.instance.AddScore(puntosGanados);
+            Destroy(collision.gameObject); // Desruyo bala
+            Destroy(gameObject); // Destruyo alien
+        }
+        else if (collision.tag == "GameOverBarrier") // si llegan demasiado abajo se acaba la partida
+        {
+            SGameManager.instance.PlayerGameOver();
         }
     }
 

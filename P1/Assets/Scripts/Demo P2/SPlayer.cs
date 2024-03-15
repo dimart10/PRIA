@@ -82,6 +82,14 @@ public class SPlayer : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "SInvader")
+        {
+            SGameManager.instance.PlayerGameOver();
+            PlayerDamaged();
+        }
+    }
     private void Shoot()
     {
         GameObject aux = Instantiate(prefabBullet, posDisparo.position, Quaternion.identity);

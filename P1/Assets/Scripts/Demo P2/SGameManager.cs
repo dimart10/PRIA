@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -50,6 +49,7 @@ public class SGameManager : MonoBehaviour
 
     // Interfaz
     public TextMeshPro scoreText; // Texto de la puntuación
+    public TextMeshPro highScoreText; // Texto de la puntuación máxima
     public TextMeshPro lifesText; // Texto con nº vidas
     public GameObject spriteVida3; // Sprites de las vidas del jugador
     public GameObject spriteVida2;
@@ -59,6 +59,8 @@ public class SGameManager : MonoBehaviour
     public Transform spawnIzqOVNI; // Posicion de OVNI a la izquierda
     public Transform spawnDerOVNI; // Posición de OVNI a la derecha
     public float spawnOVNITime = 15f; // Tiempo que tarda un OVNI en aparecer
+
+    public int highScore = 0;
 
     private void Awake()
     {
@@ -80,6 +82,10 @@ public class SGameManager : MonoBehaviour
 
         InvokeRepeating("SelectAlienShoot", tiempoEntreDisparos, tiempoEntreDisparos);
         InvokeRepeating("SpawnOVNI", spawnOVNITime, spawnOVNITime);
+
+        // Saco la puntuación máxima guardada en el archivo PlayerPrefs
+        highScore = PlayerPrefs.GetInt("HIGH-SCORE");
+        highScoreText.text = "HI-SCORE\n" + highScore.ToString();
     }
 
     void SpawnAliens()
@@ -158,6 +164,7 @@ public class SGameManager : MonoBehaviour
         gameOver = true;
         CancelInvoke(); // Interrumpimos todos los invokes de este componente (se deja de disparar)
         Debug.Log("el jugador ha perdido");
+        Invoke("ResetGame", 2); // Reinicio la partida en 2 segundos
     }
 
     public void PlayerWin()
@@ -165,6 +172,7 @@ public class SGameManager : MonoBehaviour
         gameOver = true;
         CancelInvoke(); // Interrumpimos todos los invokes de este componente (se deja de disparar)
         Debug.Log("el jugador ha ganado");
+        Invoke("ResetGame", 4); // Reinicio la partida en 2 segundos
     }
 
     public void DamagePlayer()
@@ -218,9 +226,23 @@ public class SGameManager : MonoBehaviour
 
     public void ResetGame()
     {
+        UpdateHighScore();
         SceneManager.LoadScene("DemoInvaders");
     }
     
+    public void UpdateHighScore()
+    {
+        if (score > highScore)
+        { // si mi puntuación es mayor que la máxima
+            PlayerPrefs.SetInt("HIGH-SCORE", score); // la guardo
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        UpdateHighScore(); // si cerramos la aplicación, guardamos la puntuación
+    }
+
     // Suma points puntos a la puntuacion
     public void AddScore(int points)
     {

@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Pong.unity
     guid: da390518233d59f45abe0a4d63384393
+  - enabled: 1
+    path: Assets/Scenes/DemoInvaders.unity
+    guid: c6d38c7cd543216478d07e624a84a3e2
   m_configObjects: {}
